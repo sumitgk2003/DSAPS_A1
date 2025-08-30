@@ -1,5 +1,6 @@
 #include<iostream>
 #include<map>
+#include<vector>
 using namespace std;
 
 map<long long,long long>m;
@@ -44,17 +45,35 @@ void print(){
 int main(){
     int q;
     cin>>q;
+    vector<vector<int>>v;
     for(int i=0;i<q;i++){
         int type;
         cin>>type;
         if(type==0){
+            vector<int>v1;
+            v1.push_back(0);
             int l,r,h;
             cin>>l>>r>>h;
-            update(l,r,h);
+            v1.push_back(l);
+            v1.push_back(r);
+            v1.push_back(h);
+            v.push_back(v1);
+            //update(l,r,h);
         }else if(type==1){
-            print();
+            vector<int>v2;
+            v2.push_back(1);
+            v.push_back(v2);
+            //print();
         }else{
             cout<<"invalid type";
+        }
+        
+    }
+    for(int i=0;i<q;i++){
+        if(v[i][0]==0){
+            update(v[i][1],v[i][2],v[i][3]);
+        }else{
+            print();
         }
     }
 }
